@@ -27,6 +27,7 @@ jobs:
         (mkdir Analyzers && cd Analyzers && unzip ../8b33f9fbcfce40052cf6a3651e4d14e0d42aab40.zip)
         rm OSOE-150-zip.zip 8b33f9fbcfce40052cf6a3651e4d14e0d42aab40.zip
     
+    
     - name: Windows PowerShell Static Code Analysis
       run: |
         if ($Env:RUNNER_OS -ne 'Windows') 
