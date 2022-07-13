@@ -35,12 +35,8 @@ jobs:
     
     
     - name: Windows PowerShell Static Code Analysis
+      if: ${{ matrix.machine-type == 'windows-latest' }}
       run: |
-        if ($Env:RUNNER_OS -ne 'Windows') 
-        {
-            Write-Output "This step is only for Windows. The current runner is $Env:RUNNER_OS so it's skipped."
-            exit 0
-        }
         powershell .\Analyzers\Lombiq.Analyzers.PowerShell\Invoke-Analyzer.ps1 -ForGitHubActions
     
     - name: PowerShell 7+ Static Code Analysis
