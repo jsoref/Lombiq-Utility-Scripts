@@ -20,7 +20,7 @@ jobs:
     steps:
     - shell: bash
       run: |
-        curl -LO https://github.com/jsoref/Lombiq-Utility-Scripts/archive/refs/issue/OSOE-150-zip.zip -LO https://github.com/Lombiq/PowerShell-Analyzers/archive/8b33f9fbcfce40052cf6a3651e4d14e0d42aab40.zip
+        curl -LO https://github.com/jsoref/Lombiq-Utility-Scripts/archive/refs/heads/issue/OSOE-150-zip.zip -LO https://github.com/Lombiq/PowerShell-Analyzers/archive/8b33f9fbcfce40052cf6a3651e4d14e0d42aab40.zip
         unzip OSOE-150-zip.zip
         (mkdir Analyzers && cd Analyzers && unzip ../8b33f9fbcfce40052cf6a3651e4d14e0d42aab40.zip)
         rm OSOE-150-zip.zip 8b33f9fbcfce40052cf6a3651e4d14e0d42aab40.zip
