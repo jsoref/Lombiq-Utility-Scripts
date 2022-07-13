@@ -18,7 +18,8 @@ jobs:
     runs-on: ${{ matrix.machine-type }}
 
     steps:
-    - shell: bash
+    - name: actions/checkout@psuedo
+      shell: bash
       run: |
         get_and_extract() {
           url="$1"
@@ -27,7 +28,7 @@ jobs:
           zip=$(mktemp)
           stage=$(mktemp -d)
           curl -L -o "$zip" "$url"
-          (cd "$stage" && unzip "$zip" && mv */* "$dest"/)
+          (cd "$stage" && unzip -qq "$zip" && mv */* "$dest"/)
         }
         get_and_extract https://github.com/jsoref/Lombiq-Utility-Scripts/archive/refs/heads/issue/OSOE-150-zip.zip .
         get_and_extract https://github.com/Lombiq/PowerShell-Analyzers/archive/8b33f9fbcfce40052cf6a3651e4d14e0d42aab40.zip Analyzers
