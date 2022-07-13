@@ -20,10 +20,17 @@ jobs:
     steps:
     - shell: bash
       run: |
-        curl -LO https://github.com/jsoref/Lombiq-Utility-Scripts/archive/refs/heads/issue/OSOE-150-zip.zip -LO https://github.com/Lombiq/PowerShell-Analyzers/archive/8b33f9fbcfce40052cf6a3651e4d14e0d42aab40.zip
-        unzip OSOE-150-zip.zip
-        (mkdir Analyzers && cd Analyzers && unzip ../8b33f9fbcfce40052cf6a3651e4d14e0d42aab40.zip)
-        rm OSOE-150-zip.zip 8b33f9fbcfce40052cf6a3651e4d14e0d42aab40.zip
+        get_and_extract() {
+          url="$1"
+          dest="$(realpath "$2")"
+          mkdir -p "$dest"
+          zip=$(mktemp)
+          stage=$(mktemp -d)
+          curl -L -o "$zip" "$url"
+          (cd "$stage" && unzip "$zip" && mv */* "$dest"/)
+        }
+        get_and_extract https://github.com/jsoref/Lombiq-Utility-Scripts/archive/refs/heads/issue/OSOE-150-zip.zip .
+        get_and_extract https://github.com/Lombiq/PowerShell-Analyzers/archive/8b33f9fbcfce40052cf6a3651e4d14e0d42aab40.zip Analyzers
     
     
     - name: Windows PowerShell Static Code Analysis
